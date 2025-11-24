@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>XFCE Big Sur - Documentation</title>
+    <link rel="icon" href="https://hndrapratamaa.github.io/Profile/assets/img/profile.jpg" type="image/x-icon">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header>
+        <div class="profile-header">
+            <img src="https://hndrapratamaa.github.io/Profile/assets/img/profile.jpg" class="profile-image" alt="Profile Picture">
+            <h1 class="profile-name">XFCE Big Sur</h1>
+            <p class="page-desc">Documentation & Ricing Guide</p>
+        </div>
+    </header>
+    
+    <main>
+        <div class="main-content">
+            
+            <div class="section-header">
+                <div class="header-content">
+                    <h1 class="page-title">Installation Guide</h1>
+                    <p class="page-desc">Dark Mode Edition</p>
+                </div>
+                <div class="previous-page-button-container">
+                    <a href="https://hndrapratamaa.github.io/Profile/" class="previous-page-button">
+                         Go Back
+                    </a>
+                </div>
+            </div>
+            
+            <div class="card-container">
+                
+                <div class="card">
+                    <h2 class="doc-heading">Overview</h2>
+                    <p class="doc-p">
+                        Default XFCE is fast, but visually dated. This guide documents my specific setup to force XFCE into a modern, consistent macOS Big Sur Dark aesthetic using the WhiteSur suite.
+                    </p>
+                    <div class="doc-img-container">
+                        <img src="https://raw.githubusercontent.com/vinceliuice/WhiteSur-gtk-theme/master/src/assets/preview.png" class="doc-img" alt="Preview">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="doc-heading">1. Dependencies</h2>
+                    <p class="doc-p">The install scripts require these packages. Do not skip this.</p>
+                    
+                    <div class="code-box">
+                        <span class="cmd">sudo apt update && sudo apt upgrade -y</span>
+                        <span class="cmd">sudo apt install git sassc plank xfce4-appmenu-plugin rofi imagemagick -y</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="doc-heading">2. Typography</h2>
+                    <p class="doc-p">San Francisco (SF Pro) fonts are mandatory for the correct look.</p>
+                    
+                    <div class="code-box">
+                        <span class="cmd">mkdir -p ~/.local/share/fonts</span>
+                        <span class="cmd">git clone https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts.git</span>
+                        <span class="cmd">cp San-Francisco-Pro-Fonts/*.otf ~/.local/share/fonts/</span>
+                        <span class="cmd">fc-cache -f -v</span>
+                    </div>
+                    <p class="doc-p">Navigate to <b>Settings > Appearance > Fonts</b> and apply <b>SF Pro Display</b> globally.</p>
+                </div>
+
+                <div class="card">
+                    <h2 class="doc-heading">3. Main Assets</h2>
+                    <p class="doc-p">We are using the WhiteSur suite. I use the 'Solid' variant to avoid compositing glitches on XFCE.</p>
+
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">GTK Theme</h3>
+                    <div class="code-box">
+                        <span class="cmd">git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1</span>
+                        <span class="cmd">cd WhiteSur-gtk-theme</span>
+                        <span class="cmd">./install.sh -c Dark -t all -N Glassy -s</span>
+                    </div>
+
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">Icon Theme</h3>
+                    <div class="code-box">
+                        <span class="cmd">cd ..</span>
+                        <span class="cmd">git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git --depth=1</span>
+                        <span class="cmd">cd WhiteSur-icon-theme</span>
+                        <span class="cmd">./install.sh -b</span>
+                    </div>
+
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">Cursor Theme</h3>
+                    <div class="code-box">
+                        <span class="cmd">cd ..</span>
+                        <span class="cmd">git clone https://github.com/vinceliuice/McMojave-cursors.git --depth=1</span>
+                        <span class="cmd">cd McMojave-cursors</span>
+                        <span class="cmd">./install.sh</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="doc-heading">4. System Configuration</h2>
+                    <p class="doc-p">Apply the assets in <b>Settings Manager</b>:</p>
+                    
+                    <ul class="doc-ul">
+                        <li><b>Appearance > Style:</b> WhiteSur-Dark-solid</li>
+                        <li><b>Appearance > Icons:</b> WhiteSur-dark</li>
+                        <li><b>Window Manager > Style:</b> WhiteSur-Dark-solid</li>
+                        <li><b>Mouse > Theme:</b> McMojave-cursors</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2 class="doc-heading">5. Dock (Plank)</h2>
+                    <p class="doc-p">Disable the default XFCE bottom panel before running Plank.</p>
+                    
+                    <div class="code-box">
+                        <span class="cmd">cd WhiteSur-gtk-theme/src/other/plank</span>
+                        <span class="cmd">cp -r * ~/.local/share/plank/themes/</span>
+                    </div>
+                    <p class="doc-p">
+                        Run <code>plank --preferences</code>. Set theme to <b>WhiteSur-Dark</b> and enable Icon Zoom.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h2 class="doc-heading">6. Spotlight (Rofi)</h2>
+                    <p class="doc-p">Replaces the default application menu with a spotlight-like search.</p>
+                    <div class="code-box">
+                        <span class="cmd">mkdir -p ~/.config/rofi</span>
+                        <span class="cmd">git clone https://github.com/adi1090x/rofi.git</span>
+                        <span class="cmd">cd rofi && ./setup.sh</span>
+                    </div>
+                    <p class="doc-p">Bind <code>Super + Space</code> to your preferred Rofi launch command.</p>
+                </div>
+
+                <div class="card">
+                    <h2 class="doc-heading">7. Boot & Lockscreen</h2>
+                    <p class="doc-p">Ensure visual consistency from boot to desktop.</p>
+                    
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">Plymouth</h3>
+                    <p class="doc-p"><b>Warning:</b> Incorrect Plymouth config can cause black screens. Proceed with caution.</p>
+                    <div class="code-box">
+                        <span class="cmd">git clone https://github.com/vinceliuice/WhiteSur-plymouth.git</span>
+                        <span class="cmd">sudo ./WhiteSur-plymouth/install.sh</span>
+                    </div>
+
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">LightDM</h3>
+                    <p class="doc-p">Use GTK Greeter Settings to safely theme the lockscreen.</p>
+                    <div class="code-box">
+                        <span class="cmd">sudo apt install lightdm-gtk-greeter-settings</span>
+                        <span class="cmd">sudo lightdm-gtk-greeter-settings</span>
+                    </div>
+                    <p class="doc-p">Set Theme/Icons to <b>WhiteSur-Dark</b> inside the settings app.</p>
+                </div>
+
+                <div class="card" style="text-align: center;">
+                    <h2 class="doc-heading">Setup Complete</h2>
+                    <p class="doc-p" style="text-align: center; margin-bottom: 2rem;">
+                        Reboot your system to apply all changes properly.
+                    </p>
+                    
+                    <div style="border-top: 1px solid rgba(0,0,0,0.1); padding-top: 1.5rem; margin-top: 1.5rem;">
+                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.8rem;">
+                            Documentation curated by
+                        </p>
+                        <a href="https://github.com/hndrapratamaa" target="_blank" style="text-decoration: none;">
+                            <div style="display: inline-flex; align-items: center; gap: 12px; background: #e0e5ec; padding: 8px 20px; border-radius: 50px; box-shadow:  6px 6px 12px #bec3c9, -6px -6px 12px #ffffff; transition: transform 0.2s;">
+                                <img src="https://hndrapratamaa.github.io/Profile/assets/img/profile.jpg" style="width: 30px; height: 30px; border-radius: 50%;" alt="Hendra">
+                                <span style="font-weight: 600; color: #2a2a2a; font-size: 0.95rem;">hndrapratamaa</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

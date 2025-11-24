@@ -1,0 +1,203 @@
+:root {
+    --shadow-light: 8px 8px 16px #a3b1c6;
+    --shadow-dark: -8px -8px 16px #ffffff;
+    --card-bg: #e0e5ec;
+    --accent-blue: #007AFF; /* Disimpen cuma buat terminal/link, bukan judul */
+    --radius: 20px;
+    --spacing: 1.5rem;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --bg-color: #e0e5ec;
+    --text-color: #2a2a2a;
+    --box-shadow: 8px 8px 16px #a3b1c6, -8px -8px 16px #ffffff;
+    /* Shadow dalam khusus terminal */
+    --box-shadow-inset: inset 6px 6px 12px #a3b1c6, inset -6px -6px 12px #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+    line-height: 1.6;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+}
+
+/* HEADER PROFILE */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing);
+    margin: var(--spacing);
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-light), var(--shadow-dark);
+    text-align: center;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    /* Border dihapus warnanya atau disamain background biar clean */
+    border: 4px solid var(--bg-color); 
+    box-shadow: var(--shadow-light), var(--shadow-dark);
+}
+
+.profile-name {
+    color: var(--text-color); /* HITAM, BUKAN BIRU */
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-shadow: 2px 2px 4px var(--shadow-dark); /* Shadow teks halus */
+    margin-bottom: 0.5rem;
+}
+
+/* MAIN LAYOUT */
+main { flex: 1; width: 100%; padding: var(--spacing); }
+
+.main-content {
+    max-width: 1400px; /* Lebar sesuai request */
+    margin: 0 auto;
+}
+
+/* SECTION HEADER (NAVBAR) */
+.section-header {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing);
+    box-shadow: var(--shadow-light), var(--shadow-dark); /* Shadow luar container utama */
+}
+
+.header-content { text-align: left; flex: 1; margin-left: 1rem; }
+
+.page-title {
+    color: var(--text-color); /* HITAM */
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.page-desc { color: rgba(42, 42, 42, 0.8); font-size: 1rem; }
+
+/* BUTTON FIX (Masalah Kotak Hantu Selesai di sini) */
+.previous-page-button-container {
+    display: flex;
+    margin-left: auto;
+    /* Pastikan container ini transparant & gak punya shadow */
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+.previous-page-button {
+    background: var(--card-bg);
+    color: var(--text-color); /* Teks Hitam */
+    padding: 0.8rem 1.5rem;
+    border-radius: calc(var(--radius) / 2);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    /* Shadow cuma ada di tombolnya */
+    box-shadow: var(--shadow-light), var(--shadow-dark);
+    transition: all 0.3s ease;
+}
+
+.previous-page-button:hover {
+    color: var(--text-color);
+    box-shadow: inset 2px 2px 4px rgba(163, 177, 198, 0.4),
+                inset -2px -2px 4px rgba(255, 255, 255, 0.8);
+}
+
+/* CONTENT CARDS */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    text-decoration: none !important;
+    border: 1px solid transparent;
+    display: block; /* Mode baca */
+}
+
+/* TYPOGRAPHY DALAM KARTU */
+.doc-heading {
+    color: var(--text-color); /* HITAM */
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.doc-heading:first-child { margin-top: 0; }
+
+.doc-p {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-align: justify;
+}
+
+.doc-ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+.doc-ul li { margin-bottom: 0.5rem; color: var(--text-color); }
+
+/* IMAGE & TERMINAL */
+.doc-img-container {
+    width: 100%;
+    margin: 1.5rem 0;
+    padding: 10px;
+    border-radius: 20px;
+    background: var(--card-bg);
+    box-shadow: var(--box-shadow);
+}
+.doc-img { width: 100%; border-radius: 15px; display: block; }
+
+.code-box {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: #333;
+    overflow-x: auto;
+    box-shadow: var(--box-shadow-inset);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.cmd { display: block; margin-bottom: 0.5rem; }
+.cmd::before { content: "$ "; color: var(--text-color); font-weight: bold; opacity: 0.7; }
+.comment { color: #888; font-style: italic; margin-bottom: 0.2rem; display: block; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-name { font-size: 2rem; }
+    .section-header { flex-direction: column; gap: 1rem; text-align: center; }
+    .header-content { margin-left: 0; }
+    .previous-page-button-container { margin: 0 auto; }
+}
