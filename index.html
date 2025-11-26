@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>XFCE Big Sur - Documentation</title>
     <link rel="icon" href="https://hndrapratamaa.github.io/Profile/assets/img/profile.jpg" type="image/x-icon">
-    <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
     
@@ -15,7 +15,7 @@
         <div class="profile-header">
             <img src="https://hndrapratamaa.github.io/Profile/assets/img/profile.jpg" class="profile-image" alt="Profile Picture">
             <h1 class="profile-name">XFCE Big Sur</h1>
-            <p class="page-desc">Documentation & Ricing Guide</p>
+            <p class="page-desc">The Definitive Ricing Guide</p>
         </div>
     </header>
     
@@ -24,12 +24,12 @@
             
             <div class="section-header">
                 <div class="header-content">
-                    <h1 class="page-title">Installation Guide</h1>
-                    <p class="page-desc">Dark Mode Edition</p>
+                    <h1 class="page-title">Installation Workflow</h1>
+                    <p class="page-desc">Xubuntu 24.04 Dark Edition</p>
                 </div>
                 <div class="previous-page-button-container">
                     <a href="https://hndrapratamaa.github.io/Profile/" class="previous-page-button">
-                         Go Back
+                         <i class="fas fa-arrow-left"></i> Go Back
                     </a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <div class="card">
                     <h2 class="doc-heading">Overview</h2>
                     <p class="doc-p">
-                        Default XFCE is fast, but visually dated. This guide documents my specific setup to force XFCE into a modern, consistent macOS Big Sur Dark aesthetic using the WhiteSur suite.
+                        Standard XFCE is efficient but visually conservative. This documentation outlines the exact steps to modernize Xubuntu into a pixel-perfect macOS Big Sur Dark clone. This setup utilizes a hybrid icon system and specific bootloader configurations to ensure consistency from the initial boot sequence to the desktop environment.
                     </p>
                     <div class="doc-img-container">
                         <img src="Preview.png" class="doc-img" alt="Preview">
@@ -47,121 +47,165 @@
                 </div>
 
                 <div class="card">
-                    <h2 class="doc-heading">1. Dependencies</h2>
-                    <p class="doc-p">The install scripts require these packages. Do not skip this.</p>
+                    <h2 class="doc-heading">1. Essential Dependencies</h2>
+                    <p class="doc-p">
+                        Before applying themes, install the necessary build tools. We require <code>sassc</code> for compiling GTK styles and <code>xfce4-appmenu-plugin</code> to enable the Global Menu functionality on the top panel.
+                    </p>
                     
-                    <div class="code-box">
-                        <span class="cmd">sudo apt update && sudo apt upgrade -y</span>
-                        <span class="cmd">sudo apt install git sassc plank xfce4-appmenu-plugin rofi imagemagick -y</span>
+                    <div class="code-box-wrapper">
+                        <div class="code-box">
+<span class="cmd">sudo apt update && sudo apt upgrade -y</span>
+<span class="cmd">sudo apt install git sassc plank xfce4-appmenu-plugin rofi imagemagick build-essential libglib2.0-dev-bin -y</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="card">
                     <h2 class="doc-heading">2. Typography</h2>
-                    <p class="doc-p">San Francisco (SF Pro) fonts are mandatory for the correct look.</p>
+                    <p class="doc-p">
+                        The visual identity of macOS relies on the <b>San Francisco</b> font stack. Install the Pro variant for the system UI. For the terminal and IDEs, install <b>Meslo LG</b> to ensure proper glyph rendering and Powerline support.
+                    </p>
                     
-                    <div class="code-box">
-                        <span class="cmd">mkdir -p ~/.local/share/fonts</span>
-                        <span class="cmd">git clone https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts.git</span>
-                        <span class="cmd">cp San-Francisco-Pro-Fonts/*.otf ~/.local/share/fonts/</span>
-                        <span class="cmd">fc-cache -f -v</span>
-                    </div>
-                    <p class="doc-p">Navigate to <b>Settings > Appearance > Fonts</b> and apply <b>SF Pro Display</b> globally.</p>
-                </div>
-
-                <div class="card">
-                    <h2 class="doc-heading">3. Main Assets</h2>
-                    <p class="doc-p">We are using the WhiteSur suite. I use the 'Solid' variant to avoid compositing glitches on XFCE.</p>
-
-                    <h3 class="doc-heading" style="font-size: 1.1rem;">GTK Theme</h3>
-                    <div class="code-box">
-                        <span class="cmd">git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1</span>
-                        <span class="cmd">cd WhiteSur-gtk-theme</span>
-                        <span class="cmd">./install.sh -c Dark -t all -N Glassy -s</span>
-                    </div>
-
-                    <h3 class="doc-heading" style="font-size: 1.1rem;">Icon Theme</h3>
-                    <div class="code-box">
-                        <span class="cmd">cd ..</span>
-                        <span class="cmd">git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git --depth=1</span>
-                        <span class="cmd">cd WhiteSur-icon-theme</span>
-                        <span class="cmd">./install.sh -b</span>
-                    </div>
-
-                    <h3 class="doc-heading" style="font-size: 1.1rem;">Cursor Theme</h3>
-                    <div class="code-box">
-                        <span class="cmd">cd ..</span>
-                        <span class="cmd">git clone https://github.com/vinceliuice/McMojave-cursors.git --depth=1</span>
-                        <span class="cmd">cd McMojave-cursors</span>
-                        <span class="cmd">./install.sh</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2 class="doc-heading">4. System Configuration</h2>
-                    <p class="doc-p">Apply the assets in <b>Settings Manager</b>:</p>
-                    
-                    <ul class="doc-ul">
-                        <li><b>Appearance > Style:</b> WhiteSur-Dark-solid</li>
-                        <li><b>Appearance > Icons:</b> WhiteSur-dark</li>
-                        <li><b>Window Manager > Style:</b> WhiteSur-Dark-solid</li>
-                        <li><b>Mouse > Theme:</b> McMojave-cursors</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h2 class="doc-heading">5. Dock (Plank)</h2>
-                    <p class="doc-p">Disable the default XFCE bottom panel before running Plank.</p>
-                    
-                    <div class="code-box">
-                        <span class="cmd">cd WhiteSur-gtk-theme/src/other/plank</span>
-                        <span class="cmd">cp -r * ~/.local/share/plank/themes/</span>
+                    <div class="code-box-wrapper">
+                        <div class="code-box">
+<span class="cmd">git clone https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts.git</span>
+<span class="cmd">mkdir -p ~/.local/share/fonts</span>
+<span class="cmd">cp San-Francisco-Pro-Fonts/*.otf ~/.local/share/fonts/</span>
+<span class="cmd">sudo apt install fonts-meslo</span>
+<span class="cmd">fc-cache -f -v</span>
+                        </div>
                     </div>
                     <p class="doc-p">
-                        Run <code>plank --preferences</code>. Set theme to <b>WhiteSur-Dark</b> and enable Icon Zoom.
+                        <b>Configuration:</b> Navigate to <i>Settings > Appearance > Fonts</i>. Set the default font to <b>SF Pro Display</b> (Size 10 or 11). For Terminal preferences, select <b>Meslo LG M</b>.
                     </p>
                 </div>
 
                 <div class="card">
-                    <h2 class="doc-heading">6. Spotlight (Rofi)</h2>
-                    <p class="doc-p">Replaces the default application menu with a spotlight-like search.</p>
-                    <div class="code-box">
-                        <span class="cmd">mkdir -p ~/.config/rofi</span>
-                        <span class="cmd">git clone https://github.com/adi1090x/rofi.git</span>
-                        <span class="cmd">cd rofi && ./setup.sh</span>
+                    <h2 class="doc-heading">3. Visual Assets</h2>
+                    <p class="doc-p">
+                        Install the WhiteSur suite for the GTK interface and Cursors. We use the "Solid" panel variant to prevent transparency artifacts common in the XFCE compositor.
+                    </p>
+
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">GTK Theme & Cursors</h3>
+                    <div class="code-box-wrapper">
+                        <div class="code-box">
+<span class="cmd">git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1</span>
+<span class="cmd">cd WhiteSur-gtk-theme</span>
+<span class="cmd">./install.sh -c Dark -t all -N Glassy -s -p solid</span>
+<span class="cmd">cd ..</span>
+<span class="cmd">git clone https://github.com/vinceliuice/McMojave-cursors.git --depth=1</span>
+<span class="cmd">cd McMojave-cursors</span>
+<span class="cmd">./install.sh</span>
+                        </div>
                     </div>
-                    <p class="doc-p">Bind <code>Super + Space</code> to your preferred Rofi launch command.</p>
                 </div>
 
                 <div class="card">
-                    <h2 class="doc-heading">7. Boot & Lockscreen</h2>
-                    <p class="doc-p">Ensure visual consistency from boot to desktop.</p>
+                    <h2 class="doc-heading">4. Hybrid Icon System</h2>
+                    <p class="doc-p">
+                        Stock icon themes often lack balance. To achieve the best aesthetic, we create a custom hybrid set. We use <b>WhiteSur</b> as the stable base for panel indicators and inject <b>Mkos Big Sur</b> icons for the application directory.
+                    </p>
                     
-                    <h3 class="doc-heading" style="font-size: 1.1rem;">Plymouth</h3>
-                    <p class="doc-p"><b>Warning:</b> Incorrect Plymouth config can cause black screens. Proceed with caution.</p>
-                    <div class="code-box">
-                        <span class="cmd">git clone https://github.com/vinceliuice/WhiteSur-plymouth.git</span>
-                        <span class="cmd">sudo ./WhiteSur-plymouth/install.sh</span>
+                    <div class="code-box-wrapper">
+                        <div class="code-box">
+<span class="cmd">git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git --depth=1</span>
+<span class="cmd">./WhiteSur-icon-theme/install.sh -b</span>
+<span class="cmd">cp -r ~/.local/share/icons/WhiteSur-dark ~/.local/share/icons/iXFCE</span>
+<span class="cmd">git clone https://github.com/zayronxio/Mkos-Big-Sur.git</span>
+<span class="cmd">cp -f Mkos-Big-Sur/Mkos-Big-Sur-Night/128x128/apps/* ~/.local/share/icons/iXFCE/apps/scalable/</span>
+<span class="cmd">gtk-update-icon-cache --ignore-theme-index ~/.local/share/icons/iXFCE</span>
+                        </div>
                     </div>
+                </div>
 
-                    <h3 class="doc-heading" style="font-size: 1.1rem;">LightDM</h3>
-                    <p class="doc-p">Use GTK Greeter Settings to safely theme the lockscreen.</p>
-                    <div class="code-box">
-                        <span class="cmd">sudo apt install lightdm-gtk-greeter-settings</span>
-                        <span class="cmd">sudo lightdm-gtk-greeter-settings</span>
+                <div class="card">
+                    <h2 class="doc-heading">5. Interface Configuration</h2>
+                    
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">Panel & Global Menu</h3>
+                    <p class="doc-p">
+                        Open <i>Panel Preferences</i>. Move the panel to the top of the screen. Remove the "Window Buttons" item. Add the <b>AppMenu Plugin</b> and position it immediately after the Whisker Menu.
+                    </p>
+                    <p class="doc-p">
+                        <b>Clock Format:</b> Right-click the clock and use this custom format string: <code>%a %b %d  %H:%M</code>.
+                    </p>
+
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">Dock (Plank)</h3>
+                    <div class="code-box-wrapper">
+                        <div class="code-box">
+<span class="cmd">plank --preferences</span>
+                        </div>
                     </div>
-                    <p class="doc-p">Set Theme/Icons to <b>WhiteSur-Dark</b> inside the settings app.</p>
+                    <p class="doc-p">Set the theme to "Transparent" or "Matte". In the Behavior settings, enable "Icon Zoom" to replicate the macOS dock magnification.</p>
+
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">Spotlight Launcher</h3>
+                    <p class="doc-p">Replace the default runner with Rofi. Configure your keyboard shortcuts to map <code>Super + Space</code> to launch Rofi.</p>
+                </div>
+
+                <div class="card">
+                    <h2 class="doc-heading">6. Boot & GRUB Customization</h2>
+                    <p class="doc-p">
+                        A seamless boot experience requires synchronizing the resolution between GRUB and Plymouth. A resolution mismatch is the primary cause of black screen issues during boot.
+                    </p>
+                    
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">Installation</h3>
+                    <div class="code-box-wrapper">
+                        <div class="code-box">
+<span class="cmd">git clone https://github.com/navisjayaseelan/apple-mac-plymouth.git</span>
+<span class="cmd">cd apple-mac-plymouth && sudo ./install.sh</span>
+<span class="cmd">cd ..</span>
+<span class="cmd">git clone https://github.com/Teraskull/bigsur-grub2-theme.git</span>
+<span class="cmd">cd bigsur-grub2-theme && sudo ./install.sh</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="doc-heading" style="font-size: 1.1rem;">Resolution Fix (Critical)</h3>
+                    <p class="doc-p">
+                        Configure GRUB to use your native display resolution (e.g., 1366x768).
+                    </p>
+                    <div class="code-box-wrapper">
+                        <div class="code-box">
+<span class="cmd">sudo nano /etc/default/grub</span>
+                        </div>
+                    </div>
+                    <p class="doc-p">
+                        Find <code>GRUB_GFXMODE</code> and set it to your resolution. Add the line <code>GRUB_GFXPAYLOAD_LINUX=keep</code> directly below it. Save and update:
+                    </p>
+                     <div class="code-box-wrapper">
+                        <div class="code-box">
+<span class="cmd">sudo update-grub</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="doc-heading">Credits & Upstream Sources</h2>
+                    <p class="doc-p">This setup integrates the work of several open-source projects. Please visit the original repositories:</p>
+                    
+                    <div class="credits-grid">
+                        <a href="https://github.com/vinceliuice/WhiteSur-gtk-theme" target="_blank" class="credit-btn">
+                            <i class="fas fa-palette"></i> GTK Theme
+                        </a>
+                        <a href="https://github.com/zayronxio/Mkos-Big-Sur" target="_blank" class="credit-btn">
+                            <i class="fas fa-icons"></i> Icon Pack
+                        </a>
+                        <a href="https://github.com/Teraskull/bigsur-grub2-theme" target="_blank" class="credit-btn">
+                            <i class="fas fa-terminal"></i> GRUB Theme
+                        </a>
+                        <a href="https://github.com/navisjayaseelan/apple-mac-plymouth" target="_blank" class="credit-btn">
+                            <i class="fas fa-spinner"></i> Boot Animation
+                        </a>
+                    </div>
                 </div>
 
                 <div class="card" style="text-align: center;">
-                    <h2 class="doc-heading">Setup Complete</h2>
+                    <h2 class="doc-heading">Finalizing</h2>
                     <p class="doc-p" style="text-align: center; margin-bottom: 2rem;">
-                        Reboot your system to apply all changes properly.
+                        Once all configurations are set, perform a full system reboot to reload the kernel modules for Plymouth and the LightDM session.
                     </p>
                     
                     <div style="border-top: 1px solid rgba(0,0,0,0.1); padding-top: 1.5rem; margin-top: 1.5rem;">
                         <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.8rem;">
-                            Documentation curated by
+                            Documented by
                         </p>
                         <a href="https://github.com/hndrapratamaa" target="_blank" style="text-decoration: none;">
                             <div style="display: inline-flex; align-items: center; gap: 12px; background: #e0e5ec; padding: 8px 20px; border-radius: 50px; box-shadow:  6px 6px 12px #bec3c9, -6px -6px 12px #ffffff; transition: transform 0.2s;">
@@ -175,5 +219,40 @@
             </div>
         </div>
     </main>
+
+    <script>
+        document.querySelectorAll('.code-box-wrapper').forEach(wrapper => {
+            const button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.innerHTML = '<i class="far fa-copy"></i>';
+            button.setAttribute('aria-label', 'Copy code');
+            
+            const tooltip = document.createElement('div');
+            tooltip.className = 'copy-tooltip';
+            tooltip.innerText = 'Copied!';
+            
+            wrapper.appendChild(button);
+            button.appendChild(tooltip);
+
+            button.addEventListener('click', () => {
+                const codeBox = wrapper.querySelector('.code-box');
+                const textToCopy = Array.from(codeBox.querySelectorAll('.cmd'))
+                                       .map(cmd => cmd.innerText)
+                                       .join('\n');
+
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    button.innerHTML = '<i class="fas fa-check"></i>';
+                    button.appendChild(tooltip); 
+                    tooltip.classList.add('show');
+                    
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="far fa-copy"></i>';
+                        button.appendChild(tooltip);
+                        tooltip.classList.remove('show');
+                    }, 2000);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
